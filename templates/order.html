@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Clinic Order Form</title>
+</head>
+<body>
+    <h2>Submit New Order</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+          <li style="color: {% if category == 'error' %}red{% else %}green{% endif %};">
+            {{ message }}
+          </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label for="clinic">Clinic:</label>
+        <select name="clinic" required>
+            <option value="">--Select Clinic--</option>
+            {% for clinic in clinics %}
+                <option value="{{ clinic }}">{{ clinic }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="item_code">Item:</label>
+        <select name="item_code" required>
+            <option value="">--Select Item--</option>
+            {% for code, description in items %}
+                <option value="{{ code }}">{{ description }} ({{ code }})</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" min="1" required>
+        <br><br>
+
+        <button type="submit">Submit Order</button>
+    </form>
+</body>
+</html>

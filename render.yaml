@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: clinic-stock-system
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://postgres:xADXA3wCd0LNgtjs@db.ijuxamzkywxzxtqwkrde.supabase.co:5432/postgres
